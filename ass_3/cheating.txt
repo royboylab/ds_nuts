@@ -1,3 +1,7 @@
+mingw—get update
+mingw—get install pthreads
+mingw—get install mingw32-pthreads-w32
+
 gcc -fopenmp main.c -o output
 .\output
 

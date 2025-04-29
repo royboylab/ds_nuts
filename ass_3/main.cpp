@@ -25,13 +25,11 @@ int main()
             partial[tid] += arr[i];
     }
 
-    // 3. combine & print
     long long total = 0;
     for (int i = 0; i < NUM_PROCESSORS; ++i)
     {
         total += partial[i];
-        std::cout << "Thread " << i
-                  << " partial = " << partial[i] << '\n';
+        std::cout << "Thread " << i << " partial = " << partial[i] << '\n';
     }
     std::cout << "Total sum  = " << total << '\n';
     return 0;

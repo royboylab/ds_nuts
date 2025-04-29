@@ -10,24 +10,24 @@ class TokenRingClient:
 
    def connect(self):
        self.client_socket.connect(SERVER_ADDRESS)
-       print("Connected to server")
+       print(f"Connected to server as {self.client_socket.getsockname()}")
 
    def start(self):
        try:
            while True:
                data = self.client_socket.recv(BUFFER_SIZE).decode()
                if data == "TOKEN":
-                   print("Token received. Accessing resource.")
+                   print(f"[{self.client_socket.getsockname()}] Token received. Accessing resource.")
                    # Perform operations on the resource
 
                    # Simulating work on the resource
-                   print("Working on the resource...")
+                   print(f"[{self.client_socket.getsockname()}] Working on the resource...")
                    # Simulating work by sleeping for 5 seconds
                    import time
 
                    time.sleep(5)
 
-                   print("Resource access complete. Releasing token.")
+                   print(f"[{self.client_socket.getsockname()}] Resource access complete. Releasing token.")
                    self.client_socket.send("TOKEN".encode())
 
                if data == "CLOSE":
@@ -48,4 +48,3 @@ if __name__ == "__main__":
    client = TokenRingClient()
    client.connect()
    client.start()
-

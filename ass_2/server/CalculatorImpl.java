@@ -5,7 +5,7 @@ import calculator_module.CalculatorPOA;
 
 public class CalculatorImpl extends CalculatorPOA {
 
-    private ORB orb; // handle to ORB so we can shut it down
+    private ORB orb;
 
     public void setORB(ORB orb) {
         this.orb = orb;
@@ -31,7 +31,6 @@ public class CalculatorImpl extends CalculatorPOA {
         return a / b;
     }
 
-    // asynchronous exit triggered from the client
     @Override
     public void shutdown() {
         orb.shutdown(false);

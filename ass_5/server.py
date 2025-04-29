@@ -29,6 +29,7 @@ class TokenRingServer:
                ## If this is the first client, send the token
                if len(self.clients) == 1:
                    # Send the token to the first client
+                   print(f"Sending initial token to {client_address}")
                    client_socket.send(TOKEN.encode())
 
                ## Start a new thread to handle the client
@@ -62,10 +63,10 @@ class TokenRingServer:
 
            ## If the client sends TOKEN, send it to the next client
            if data == TOKEN:
-               print("Received token")
+               print(f"Received token from {client_socket.getpeername()}")
                if len(self.clients) >= 1:
                    if self.running:
-                       print("Sending token to next client")
+                       print(f"Sending token to next client {next_client.getpeername()}")
                        next_client.send(TOKEN.encode())
 
                    else:
@@ -93,3 +94,4 @@ class TokenRingServer:
 if __name__ == "__main__":
    server = TokenRingServer()
    server.start()
+

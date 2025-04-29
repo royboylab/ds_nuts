@@ -13,18 +13,8 @@ public class CalculatorClient {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         try {
-            /*
-             * ----------------------------------------------------
-             * 1. Boot the ORB (just enough to reach NameService)
-             * ----------------------------------------------------
-             */
             ORB orb = ORB.init(args, null);
 
-            /*
-             * ----------------------------------------------------
-             * 2. Obtain a reference to the remote Calculator
-             * ----------------------------------------------------
-             */
             org.omg.CORBA.Object nsObj = orb.resolve_initial_references("NameService");
             NamingContextExt naming = NamingContextExtHelper.narrow(nsObj);
             Calculator calc = CalculatorHelper.narrow(naming.resolve_str("Calculator"));
@@ -43,11 +33,6 @@ public class CalculatorClient {
                     break;
                 int b = in.nextInt();
 
-                /*
-                 * --------------------------------------------
-                 * 3. Remote invocations
-                 * --------------------------------------------
-                 */
                 System.out.println("a + b = " + calc.add(a, b));
                 System.out.println("a - b = " + calc.subtract(a, b));
                 System.out.println("a * b = " + calc.multiply(a, b));
@@ -59,8 +44,6 @@ public class CalculatorClient {
             }
 
             System.out.println("Bye!");
-            // Optionally tell the server to shut down:
-            // calc.shutdown();
 
         } catch (Exception e) {
             e.printStackTrace();
