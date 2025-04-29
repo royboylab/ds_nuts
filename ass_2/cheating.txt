@@ -1,0 +1,35 @@
+corba - create all files 
+jdk 8 is required 
+
+Set temporary PATH for parallel jdk 22 and jdk 8
+$env:PATH = "C:\Users\dukew\Downloads\OpenJDK8U-jdk_x64_windows_hotspot_8u452b09\jdk8u452-b09\bin;" + $env:PATH
+
+ java -version
+
+
+Step 1 Generate stubs/skeletons
+
+& "C:\Users\dukew\Downloads\OpenJDK8U-jdk_x64_windows_hotspot_8u452b09\jdk8u452-b09\bin\idlj.exe" -fall calculator.idl
+or (if env is set)
+idlj -fall calculator.idl
+
+Step 2 Compile everything
+& "C:\Users\dukew\...\jdk8u452-b09\bin\javac.exe" -cp . server\*.java client\*.java calculator_module\*.java
+or (if env is set)
+javac -cp . server\*.java client\*.java calculator_module\*.java (working)
+or
+javac -cp . */*.java calculator module/*.java (wrong)
+or 
+javac .\*\*.java (wrong)
+
+Step 3 Open a new terminal tab and start ORBD
+orbd -ORBInitialPort 1050 -ORBInitialHost localhost
+
+Step 4 Run the server 
+java -cp . server.CalculatorServer -ORBInitialPort 1050 -ORBInitialHost localhost
+or 
+java server.CalculatorServer -ORBInitialPort 1050 -ORBInitialHost localhost
+
+
+Step 5
+java client.CalculatorClient -ORBInitialPort 1050 -ORBInitialHost localhost

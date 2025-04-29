@@ -1,0 +1,5 @@
+gcc -fopenmp main.c -o output
+.\output
+
+g++ -fopenmp main.c -o array_sum.exe  
+.\array_sum.exe

@@ -1,0 +1,12 @@
+Compile everything
+
+javac .\*\*.java     # Windows PowerShell / CMD
+# or
+javac **/*.java      # bash/zsh
+
+
+# 1. Compile
+javac -cp . remotes\*.java server\*.java client\*.java
+
+# 2. Launch the RMI server (leave this terminal open)
+java  -cp . server.SearchServer
