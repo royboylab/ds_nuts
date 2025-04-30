@@ -12,8 +12,7 @@ class Bully:
        for i in range(process_id + 1, self.num_process + 1):
            if self.state[i - 1]:
                print(
-                   f"Process {process_id} is sending election message to process {i}"
-               )
+                   f"Process {process_id} is sending election message to process {i}")
                cod = i
 
        print(f"Process {cod} is sending coordinator message to all")

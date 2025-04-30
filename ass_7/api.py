@@ -25,11 +25,11 @@ def multiply():
 
 @app.post("/divide")
 def divide():
-    n1, n2 = get_nums()
+    n1, n2 = get_nums()/
     if n2 == 0:
         return jsonify(error="Division by zero"), 400
     return jsonify(result=n1 / n2)
 
 if __name__ == "__main__":
-    # API only — no templates, so default port 5000 is fine
+    
     app.run(debug=True)

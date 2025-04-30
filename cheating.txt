@@ -1,1 +1,2 @@
-python select interpretor - ctrl+shift+p
+iwr -Uri "https://github.com/royboylab/ds_nuts/archive/refs/heads/main.zip" -OutFile "main.zip"
+Expand-Archive main.zip

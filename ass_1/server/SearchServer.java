@@ -12,8 +12,8 @@ public class SearchServer {
     public static void main(String[] args) {
         try {
             Search service = new SearchQuery();
-            Registry reg = LocateRegistry.createRegistry(1099);
 
+            Registry reg = LocateRegistry.createRegistry(1099);
             Naming.rebind("rmi://localhost:1099/REMOTE_SEARCH", service);
 
             System.out.println("[SERVER] SearchServer ready");

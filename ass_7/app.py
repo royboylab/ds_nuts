@@ -18,14 +18,13 @@ def calculate():
     payload  = {"num1": num1, "num2": num2}
 
     try:
-        resp   = requests.post(endpoint, json=payload, timeout=3)
-        resp.raise_for_status()
-        result = resp.json().get("result")
+        res= requests.post(endpoint, json=payload, timeout=3)
+        res.raise_for_status()
+        result = res.json().get("result")
     except Exception as e:
         result = f"Error: {e}"
 
     return render_template("result.html", result=result)
 
 if __name__ == "__main__":
-    # Host UI on 3000 so it doesn’t clash with API
     app.run(debug=True, port=3000)

@@ -1,0 +1,1 @@
+python select interpretor - ctrl+shift+p

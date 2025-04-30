@@ -3,7 +3,6 @@ import socket
 SERVER_ADDRESS = ("localhost", 8080)
 BUFFER_SIZE = 1024
 
-
 class TokenRingClient:
    def __init__(self):
        self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

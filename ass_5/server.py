@@ -33,14 +33,13 @@ class TokenRingServer:
                    client_socket.send(TOKEN.encode())
 
                ## Start a new thread to handle the client
-               thread = threading.Thread(
-                   target=self.handle_client, args=(client_socket,)
-               )
+               thread = threading.Thread(target=self.handle_client, args=(client_socket,))
                thread.start()
 
                self.client_threads.append(thread)
 
        except KeyboardInterrupt:
+           print("Closing server..")
            self.stop()
 
    def handle_client(self, client_socket):
@@ -49,9 +48,7 @@ class TokenRingServer:
            data = client_socket.recv(BUFFER_SIZE).decode()
 
            ## select the next client to send the token to
-           next_client = self.clients[
-               (self.clients.index(client_socket) + 1) % len(self.clients)
-           ]
+           next_client = self.clients[ (self.clients.index(client_socket) + 1) % len(self.clients)]
 
            ## If the client sends CLOSE, remove it from the list of clients and close the connection
            if data == "CLOSE":

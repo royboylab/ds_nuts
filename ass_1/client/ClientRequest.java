@@ -18,6 +18,8 @@ public class ClientRequest {
 
             String result = stub.query(term);
             System.out.println("[CLIENT] Result → " + result);
+            sc.close();
+
         } catch (Exception e) {
             System.err.println("[CLIENT] fatal: " + e);
         }
